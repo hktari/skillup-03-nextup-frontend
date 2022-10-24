@@ -20,7 +20,7 @@
     margin-right: 16px;
 }
 
-.body {
+.body { 
     position: relative;
     z-index: 1;
     /* background-color: var(--color-alt); */

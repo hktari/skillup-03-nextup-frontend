@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import EventCard from '../../components/event-card';
 import styles from './landing-page.module.css'
 import Header from '../../components/layout/header/header';
+import SearchBar from '../../components/search-bar/search-bar';
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -35,7 +36,11 @@ export default function Home() {
 
             <p className="body">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta quia sed obcaecati deserunt explicabo ipsa.</p>
 
-            search bar
+            <div className="mt-5">
+            </div>
+            <SearchBar />
+            <div className="mt-5">
+            </div>
           </section>
         </div>
       </div>
