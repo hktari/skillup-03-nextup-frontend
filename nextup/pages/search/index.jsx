@@ -36,7 +36,7 @@ const SearchPage = () => {
             <section className={`p-4 ${styles.events}`}>
                 <h2 className="h5">Events</h2>
                 <p className="body">All upcoming events</p>
-
+                <div className="mt-4"></div>
                 <EventList />
             </section>
         </div>

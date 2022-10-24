@@ -15,12 +15,13 @@ body {
   position: relative;
 }
 
-.offset-top-header{
-  padding-top: var(--header-height) !important;  
+.offset-top-header {
+  padding-top: var(--header-height) !important;
 }
 
 :root {
   --header-height: 96px;
+  --footer-height: 64px;
 }
 
 /* --------------------------------- colors --------------------------------- */
