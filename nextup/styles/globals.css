@@ -19,6 +19,22 @@ body {
   --color-white: #fff;
 }
 
+.color-primary {
+  color: var(--color-primary);
+}
+
+.color-alt {
+  color: var(--color-alt);
+}
+
+.color-black {
+  color: var(--color-black);
+}
+
+.color-white{
+  color: var(--color-white);
+}
+
 /* ------------------------------- typography ------------------------------- */
 .h1 {
   font-family: inherit;
