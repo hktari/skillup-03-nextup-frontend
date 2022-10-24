@@ -1,0 +1,18 @@
+.header {
+    position: relative;
+}
+
+.header .banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 488px;
+    z-index: -1;
+}
+
+@media (min-width:1024px) {
+    .header .banner {
+        height: 656px;
+    }
+}

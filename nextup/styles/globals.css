@@ -10,6 +10,19 @@ body {
   box-sizing: border-box;
 }
 
+
+body {
+  position: relative;
+}
+
+.offset-top-header{
+  padding-top: var(--header-height) !important;  
+}
+
+:root {
+  --header-height: 96px;
+}
+
 /* --------------------------------- colors --------------------------------- */
 
 :root {
@@ -120,7 +133,8 @@ body {
 
 /* ---------------------------------- input --------------------------------- */
 
-.input:focus, .input:focus-visible {
+.input:focus,
+.input:focus-visible {
   border: none;
   outline: none;
 }

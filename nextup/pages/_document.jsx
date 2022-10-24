@@ -17,11 +17,13 @@ export default function Document() {
                 <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet" />
                 <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet" />            
                  */}
-                </Head>
+            </Head>
             <body id="appRoot">
-                <Header/>
-                <Main />
-                <Footer />
+                <Header />
+                <div className="page-wrapper">
+                    <Main />
+                    <Footer />
+                </div>
                 <NextScript />
             </body>
         </Html>
