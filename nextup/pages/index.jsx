@@ -14,7 +14,12 @@ export default function Home() {
         <button onClick={() => setModalOpen(!modalOpen)}>toggle</button>
         <Modal isOpen={modalOpen}
         >
-          <h1>hello there</h1>
+          <div className="">regular text</div>
+          <div className="body">non regular text</div>
+          <div className='h1'>header 1</div>
+          <div className='h2'>header 2</div>
+          <div className='bold'>bold text</div>
+
           <button onClick={() => setModalOpen(false)}>close</button>
         </Modal>
       </div>
