@@ -12,7 +12,10 @@ export default function Home() {
   return (
     <>
       <div className="">
-        <button onClick={() => setModalOpen(!modalOpen)}>toggle</button>
+        <button className='btn btn-primary' onClick={() => setModalOpen(!modalOpen)}>Sign up</button>
+        <button className='btn btn-alt' onClick={() => setModalOpen(!modalOpen)}>Sign up</button>
+        <button className='btn btn-alt btn-fat' onClick={() => setModalOpen(!modalOpen)}>Sign up</button>
+        <button className="btn btn-primary btn-icon"><i className='bi bi-x'></i></button>
         <Modal isOpen={modalOpen}
         >
           <div className="">regular text</div>
@@ -21,7 +24,7 @@ export default function Home() {
           <div className='h2'>header 2</div>
           <div className='bold'>bold text</div>
           <i class="bi bi-1-circle"></i>
-          <Button onClick={() => setModalOpen(false)}>close</Button>
+          <button  onClick={() => setModalOpen(false)}>close</button>
         </Modal>
       </div>
     </>
