@@ -10,7 +10,16 @@ body {
   box-sizing: border-box;
 }
 
+/* --------------------------------- colors --------------------------------- */
 
+:root{
+  --color-primary: #2F3C7E;
+  --color-alt: #FBEAEB;
+  --color-black: #2D2D2D;
+  --color-white: #fff; 
+}
+
+/* ------------------------------- typography ------------------------------- */
 .h1 {
   font-family: inherit;
   font-weight: 600;
