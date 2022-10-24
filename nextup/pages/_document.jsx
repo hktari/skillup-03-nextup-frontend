@@ -1,4 +1,6 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import Footer from '../components/layout/footer/footer'
+import Header from '../components/layout/header/header'
 
 export default function Document() {
     return (
@@ -17,7 +19,9 @@ export default function Document() {
                  */}
                 </Head>
             <body id="appRoot">
+                <Header/>
                 <Main />
+                <Footer />
                 <NextScript />
             </body>
         </Html>

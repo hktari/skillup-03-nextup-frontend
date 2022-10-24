@@ -1,0 +1,45 @@
+.container {
+    background-color: var(--color-alt);
+    position: relative;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 706px;
+    overflow: hidden;
+    display: flex;
+}
+
+.header img {
+    height: 100%;
+    width: 338px;
+    object-fit: cover;
+    margin-right: 16px;
+}
+
+.body {
+    position: relative;
+    z-index: 1;
+    /* background-color: var(--color-alt); */
+    padding-top: calc(706px - 50px);
+}
+
+.title {
+    width: 75%;
+}
+
+section.search,
+section.next-event {
+    padding: 0 35px;
+}
+
+section.next-event {
+}
+
+section.search {
+    background-color: var(--color-white);
+    height: 100%;
+}
