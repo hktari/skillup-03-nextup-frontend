@@ -1,3 +1,15 @@
-.container{
-    height: var(--footer-height);
+.container {
+    height: var(--footer-height)px;
+    position: relative;
+    background-color: orange;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 0px;
+}
+
+
+.logo {
+    left: 40px;
+    top: 24px;
+    width: 24px;
+    height: 24px;
 }

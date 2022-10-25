@@ -4,11 +4,12 @@ import Image from 'next/image'
 
 const Footer = () => {
   return (
-    <div className={styles.container}>
-      {/* <Image src={'/logo.svg'} width={40} height={40} /> */}
-
-      <small className='h5 color-primary'>All Rights Reserved | skillupmentor.com</small>
-    </div>
+    <footer>
+      <div className={styles.container}>
+        <img className={styles.logo} src='logo.svg' />
+        <small className={`h5 color-primary ${styles.text}`}>All Rights Reserved | skillupmentor.com</small>
+      </div>
+    </footer>
   )
 }
 
