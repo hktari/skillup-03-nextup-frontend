@@ -6,11 +6,6 @@ import SearchBar from '../../components/search-bar/search-bar'
 import EventCard from '../../components/event-card'
 import EventList from '../../components/event-list/event-list'
 
-import Modal from 'react-modal'
-
-Modal.setAppElement('#appRoot');
-
-
 const SearchPage = () => {
     return (
         <div className={styles.container}>

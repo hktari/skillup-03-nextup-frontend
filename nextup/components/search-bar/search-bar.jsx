@@ -14,11 +14,11 @@ const SearchBar = ({ onSearchResults }) => {
         <div className={styles.container} >
             <div className={styles.top}>
                 <div className={styles.search}>
-                    <i class="bi bi-geo-alt-fill"></i>
+                    <i className="bi bi-geo-alt-fill"></i>
                     <input className='body input' type="text" placeholder='Search by location' />
                 </div>
                 <div className={styles.date}>
-                    <i class="bi bi-calendar"></i>
+                    <i className="bi bi-calendar"></i>
                     <input 
                     placeholder='dd.mm.yyyy'
                     className='body input' type="date" value={date} onChange={e => setDate(e.currentTarget.value)} />

@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Modal from 'react-modal';
 import { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import EventCard from '../../components/event-card';
@@ -9,8 +8,6 @@ import Header from '../../components/layout/header/header';
 import SearchBar from '../../components/search-bar/search-bar';
 
 export default function Home() {
-  const [modalOpen, setModalOpen] = useState(false)
-
   return (
     <>
       <div className={styles.container}>
