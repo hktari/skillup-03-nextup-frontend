@@ -15,15 +15,17 @@ const SearchBar = ({ onSearchResults }) => {
             <div className={styles.top}>
                 <div className={styles.search}>
                     <i class="bi bi-geo-alt-fill"></i>
-                    <input className='input' type="text" placeholder='Search by location' />
+                    <input className='body input' type="text" placeholder='Search by location' />
                 </div>
                 <div className={styles.date}>
                     <i class="bi bi-calendar"></i>
-                    <input className='input' type="date" value={date} onChange={e => setDate(e.currentTarget.value)} />
+                    <input 
+                    placeholder='dd.mm.yyyy'
+                    className='body input' type="date" value={date} onChange={e => setDate(e.currentTarget.value)} />
                 </div>
             </div>
             <div className={styles.bottom}>
-                <button onClick={() => performSearch()} className="btn btn-primary btn-fat w-100">Search</button>
+                <button onClick={() => performSearch()} className="btn btn-primary w-100">Search</button>
             </div>
         </div>
     )
