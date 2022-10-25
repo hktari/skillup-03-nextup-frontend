@@ -34,13 +34,36 @@
     padding: 13px;
 }
 
-.left p, .right p{
+.left p,
+.right p {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.title{
+.title {
     font-size: 18px;
+}
+
+@media (min-width:992px) {
+    .left,.middle,.right{
+        padding: 16px;
+    }
+    .left {
+        flex-basis: 15%;
+    }
+
+    .middle {
+        align-items: flex-start;
+        flex-basis: auto;
+        flex-grow: 1;
+    }
+
+    .right{
+        align-items: flex-end ;
+    }
+    .check {
+        min-width: 180px;
+    }
 }
