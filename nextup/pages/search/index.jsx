@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './search.module.css'
 import Image from 'next/image'
 import bannerImg from '../../assets/images/search-banner.png'
@@ -7,10 +7,22 @@ import EventCard from '../../components/event-card'
 import EventList from '../../components/event-list/event-list'
 import HorizontalScroll from '../../components/horizontal-scroll/horizontal-scroll'
 import EventCarousel from '../../components/event-carousel/event-carousel'
+import eventsApi from '../../common/events'
+
 const SearchPage = () => {
 
-    const [featuredEvents, setFeaturedEvents] = useState([1, 2, 3])
+    const [featuredEvents, setFeaturedEvents] = useState([])
 
+    useEffect(() => {
+        async function getEvents() {
+            const featuredEvents = await eventsApi.getFeatured()
+            console.log(featuredEvents)
+            setFeaturedEvents(featuredEvents.items)
+        }
+
+        getEvents()
+
+    }, [])
 
     return (
         <div className={`${styles.container}`}>
@@ -33,7 +45,7 @@ const SearchPage = () => {
 
             <section className={`container p-4 d-none d-md-block ${styles.featured}`}>
                 <h2 className="h5">Featured events</h2>
-                <EventCarousel />
+                {/* <EventCarousel /> */}
             </section>
             <section className={`container  p-4 ${styles.events}`}>
                 <h2 className="h5">Events</h2>
