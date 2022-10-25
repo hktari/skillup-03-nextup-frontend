@@ -25,7 +25,7 @@ const SearchBar = ({ onSearchResults }) => {
                 </div>
             </div>
             <div className={styles.bottom}>
-                <button onClick={() => performSearch()} className="btn btn-primary w-100">Search</button>
+                <button onClick={() => performSearch()} className="btn btn-primary">Search</button>
             </div>
         </div>
     )

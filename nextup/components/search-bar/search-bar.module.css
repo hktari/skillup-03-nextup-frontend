@@ -38,3 +38,23 @@
 
     /* flex-basis: 35%; */
 }
+
+.bottom button{
+    width: 100%;
+}
+
+
+@media(min-width:1024px) {  
+    .container{
+        display: flex;
+        height: 42px;
+    }
+    .top{
+        flex-grow: 1;
+        justify-content: start;
+    }
+    .bottom button{
+        height: 100%;
+        width: 228px;
+    }
+}
