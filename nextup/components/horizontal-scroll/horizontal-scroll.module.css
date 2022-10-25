@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    min-width: 100vw;
+    overflow-x: scroll;
+    padding: 6px 0;
+}
+
+.container > * {
+    margin-right: 16px;
+    min-width: 80vw;
+    flex-grow: 1;
+}
+
