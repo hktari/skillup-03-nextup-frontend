@@ -19,6 +19,26 @@ body {
   padding-top: var(--header-height) !important;
 }
 
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: calc(-1 * var(--footer-height));
+}
+
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
+.site-footer,
+.page-wrap:after {
+  height: var(--footer-height);
+}
+
+.site-footer {
+  background: orange;
+}
+
 :root {
   --header-height: 96px;
   --footer-height: 64px;

@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className='site-footer'>
       <div className={styles.container}>
         <img className={styles.logo} src='logo.svg' />
         <small className={`h5 color-primary ${styles.text}`}>All Rights Reserved | skillupmentor.com</small>
