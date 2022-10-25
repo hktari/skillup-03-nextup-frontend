@@ -15,10 +15,10 @@ const EventCard = ({ imageUrl, title, datetime, location, maxUsers }) => {
 
                 <div className={styles.footer}>
                     <div className={styles.location}>
-                        <i class="bi bi-geo-alt-fill color-primary"></i><span className='body color-black'>{location}</span>
+                        <i className="bi bi-geo-alt-fill color-primary"></i><span className='body color-black'>{location}</span>
                     </div>
                     <div className={styles['max-users']}>
-                        <i class="bi bi-person-fill color-primary"></i>
+                        <i className="bi bi-person-fill color-primary"></i>
                         <span>{maxUsers}</span>
                     </div>
                 </div>
