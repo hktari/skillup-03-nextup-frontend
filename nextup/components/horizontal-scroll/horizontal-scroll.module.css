@@ -1,8 +1,10 @@
 .container {
+    position: relative;
+    left: 0;
+    right: 0;
     display: flex;
-    min-width: 100vw;
     overflow-x: scroll;
-    padding: 6px 0;
+    padding: 6px 24px;
 }
 
 .container>* {

@@ -25,14 +25,15 @@ const SearchPage = () => {
                     <SearchBar />
                 </div>
             </section>
-            <section className={`container p-4 ${styles.featured}`}>
+
+            <section className={`d-md-none ${styles.featured}`}>
+                <h2 className="h5 mx-4">Featured events</h2>
+                <HorizontalScroll events={featuredEvents} />
+            </section>
+
+            <section className={`container p-4 d-none d-md-block ${styles.featured}`}>
                 <h2 className="h5">Featured events</h2>
-                <div className="d-md-none">
-                    <HorizontalScroll events={featuredEvents} />
-                </div>
-                <div className="d-none d-md-block">
-                    <EventCarousel />
-                </div>
+                <EventCarousel />
             </section>
             <section className={`container  p-4 ${styles.events}`}>
                 <h2 className="h5">Events</h2>
