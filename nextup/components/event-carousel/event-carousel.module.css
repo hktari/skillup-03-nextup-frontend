@@ -9,7 +9,11 @@
     padding-bottom: 23px;
 }
 
+.item-container > *{
+    max-width: 387px;
+    max-height: 392px;
+}
+
 .item-container > :nth-child(1), .item-container > :nth-child(2) {
     margin-right: 16px;
-
 }

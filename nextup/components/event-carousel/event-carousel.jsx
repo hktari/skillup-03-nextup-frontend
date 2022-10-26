@@ -4,53 +4,47 @@ import { Carousel, CarouselItem } from 'react-bootstrap'
 import EventCard from '../event-card'
 import styles from './event-carousel.module.css'
 
-const EventCarousel = () => {
+const EventCarousel = ({ events }) => {
+
+    function splitIntoGroupsOfThree(events) {
+        const groups = []
+        let curGroup = []
+        for (let i = 0; i < events.length; i++) {
+            curGroup.push(events[i])
+            if (curGroup.length === 3) {
+                groups.push(curGroup)
+                curGroup = []
+            }
+        }
+
+        // special handling for last group of less than three events
+        const unevenSplit = events.length % 3 !== 0
+        if (unevenSplit) {
+            groups.push(curGroup)
+        }
+
+        return groups
+    }
+
     return (
         <Carousel controls={false}>
-            <CarouselItem>
-                <div className={styles['item-container']}>
-                    <EventCard
-                        imageUrl={'https://images.unsplash.com/photo-1522158637959-30385a09e0da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'}
-                        datetime={new Date()}
-                        title='Partiy with Eminem'
-                        location={'6391 Elgin St. Celina, Delaware'}
-                        maxUsers={100} />
-                    <EventCard
-                        imageUrl={'https://images.unsplash.com/photo-1522158637959-30385a09e0da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'}
-                        datetime={new Date()}
-                        title='Partiy with Eminem'
-                        location={'6391 Elgin St. Celina, Delaware'}
-                        maxUsers={100} />
-                    <EventCard
-                        imageUrl={'https://images.unsplash.com/photo-1522158637959-30385a09e0da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'}
-                        datetime={new Date()}
-                        title='Partiy with Eminem'
-                        location={'6391 Elgin St. Celina, Delaware'}
-                        maxUsers={100} />
-                </div>
-            </CarouselItem>
-            <CarouselItem>
-                <div className={styles['item-container']}>
-                    <EventCard
-                        imageUrl={'https://images.unsplash.com/photo-1522158637959-30385a09e0da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'}
-                        datetime={new Date()}
-                        title='Partiy with Eminem'
-                        location={'6391 Elgin St. Celina, Delaware'}
-                        maxUsers={100} />
-                    <EventCard
-                        imageUrl={'https://images.unsplash.com/photo-1522158637959-30385a09e0da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'}
-                        datetime={new Date()}
-                        title='Partiy with Eminem'
-                        location={'6391 Elgin St. Celina, Delaware'}
-                        maxUsers={100} />
-                    <EventCard
-                        imageUrl={'https://images.unsplash.com/photo-1522158637959-30385a09e0da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'}
-                        datetime={new Date()}
-                        title='Partiy with Eminem'
-                        location={'6391 Elgin St. Celina, Delaware'}
-                        maxUsers={100} />
-                </div>
-            </CarouselItem>            
+            {splitIntoGroupsOfThree(events).map(group =>
+            (
+                <CarouselItem>
+                    <div className={styles['item-container']}>
+                        {group.map(ev => (
+                            <EventCard
+                                key={ev.eventId}
+                                imageUrl={ev.imageUrl}
+                                datetime={ev.datetime}
+                                title={ev.title}
+                                location={ev.location}
+                                maxUsers={ev.max_users} />
+                        ))}
+                    </div>
+                </CarouselItem>
+            )
+            )}
         </Carousel >
     )
 }
