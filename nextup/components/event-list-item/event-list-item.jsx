@@ -34,7 +34,7 @@ const EventListItem = ({ id, datetime, title, location }) => {
                 <div className='body'>
                     <span className={`bold ${styles.title}`}>{getFormattedDate(datetime)}</span>
                     <br />
-                    <span className=''>{getFormattedTime(datetime)}</span>
+                    <span className='mt-1'>{getFormattedTime(datetime)}</span>
                 </div>
             </div>
             <div className={styles.middle}>
