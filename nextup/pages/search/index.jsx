@@ -7,7 +7,7 @@ import EventCard from '../../components/event-card'
 import EventList from '../../components/event-list/event-list'
 import HorizontalScroll from '../../components/horizontal-scroll/horizontal-scroll'
 import EventCarousel from '../../components/event-carousel/event-carousel'
-import eventsApi from '../../common/events'
+import eventsApi from '../../common/services/eventsApi'
 
 const SearchPage = () => {
 
