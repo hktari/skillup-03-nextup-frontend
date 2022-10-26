@@ -9,6 +9,17 @@ export function setAccessToken(token) {
 }
 
 
+axios.interceptors.response.use(function (response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    console.log('intercepting response', response)
+    return response?.data;
+}, function (error) {
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+    return Promise.reject(error);
+});
+
 axios.defaults.transformResponse = [function (data) {
     const dateKeyRx = /date/i
     return JSON.parse(data, (key, value) => {
@@ -24,16 +35,6 @@ axios.defaults.transformResponse = [function (data) {
     })
 }]
 
-// Add a response interceptor
-axios.interceptors.response.use(function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-    return response.data;
-}, function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    return Promise.reject(error);
-});
 
 export default axios
 

@@ -11,7 +11,9 @@ const EventCard = ({ imageUrl, title, datetime, location, maxUsers }) => {
                 <h2 className={`h3 ${styles.title}`}>
                     {title}
                 </h2>
-                <p className={`body ${styles.datetime}`}>{format(datetime, 'd-m-yy, HH:MM')}</p>
+                <p className={`body ${styles.datetime}`}>
+                    {datetime ? format(datetime, 'd-m-yy, HH:MM') : '-'}
+                </p>
 
                 <div className={styles.footer}>
                     <div className={styles.location}>

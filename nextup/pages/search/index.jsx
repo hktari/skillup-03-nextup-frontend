@@ -15,9 +15,9 @@ const SearchPage = () => {
 
     useEffect(() => {
         async function getEvents() {
-            const featuredEvents = await eventsApi.getFeatured()
+            const featuredEvents = await eventsApi.getFeatured(3)
             console.log(featuredEvents)
-            setFeaturedEvents(featuredEvents.items)
+            setFeaturedEvents(featuredEvents)
         }
 
         getEvents()

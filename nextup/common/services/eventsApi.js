@@ -1,8 +1,13 @@
 import axios from './http'
 
 // GET /event/featured
-function getFeatured() {
-    return axios.get('/event/featured')
+function getFeatured(count) {
+    const featuredEvents = []
+    for (let i = 0; i < count; i++) {
+        featuredEvents.push(axios.get('/event/featured'))
+    }
+    
+    return Promise.all(featuredEvents)
 }
 
 
@@ -35,7 +40,7 @@ function remove(eventId) {
 
 // PUT /event (auth guard)
 function update(eventId, title, description, datetime, imageBase64, location, max_users) {
-    return axios.put('/event/' + eventId,{
+    return axios.put('/event/' + eventId, {
         title,
         description,
         datetime,
@@ -67,7 +72,7 @@ function performBooking(eventId) {
 }
 
 // DELETE /event/{id}/book
-function undoBooking(eventId){
+function undoBooking(eventId) {
     return axios.delete(`/event/${eventId}/book`)
 }
 
