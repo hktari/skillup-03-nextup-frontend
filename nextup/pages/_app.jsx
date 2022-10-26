@@ -4,13 +4,15 @@ import '../styles/globals.css'
 import Layout from '../components/layout/layout';
 
 function MyApp({ Component, pageProps }) {
-
-  return (
+  // Use the layout defined at the page level, if available
+  const specialLayout = Component.getLayout
+  if (specialLayout) {
+    return specialLayout(<Component {...pageProps} />)
+  } else {
     <Layout>
       <Component  {...pageProps} />
     </Layout>
-
-  )
+  }
 }
 
 export default MyApp

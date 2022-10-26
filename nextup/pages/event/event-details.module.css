@@ -1,3 +1,12 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.details-container{
+
+}
+
 .image-container {
     position: relative;
 }
@@ -52,4 +61,25 @@
 .book {
     height: 51px;
     border-radius: 16px;
+}
+
+@media(min-width:992px) {
+    .container {
+        flex-direction: row;
+        justify-content: space-evenly;
+        height: 100%; 
+    }
+    
+    .details-container, .image-container{
+        flex-basis: 50%; 
+    }
+
+    .details-container > div:nth-child(1){
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    
+    .image-container{
+        order: 1;
+    }
 }
