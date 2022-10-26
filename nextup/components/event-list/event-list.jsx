@@ -2,13 +2,16 @@ import React from 'react'
 import EventListItem from '../event-list-item/event-list-item'
 import styles from './event-list.module.css'
 
-const EventList = () => {
-    const items = [0, 1, 2, 3, 4]
+const EventList = ({ events }) => {
     return (
         <div className={styles.container}>
             <div className={styles.list}>
                 {
-                    items.map(i => <EventListItem />)
+                    events.map(ev => (
+                        <EventListItem
+                            id={ev.eventId} datetime={ev.datetime} location={ev.location}
+                            title={ev.title} 
+                        />))
                 }
             </div>
             <div className='text-center mt-4 '>

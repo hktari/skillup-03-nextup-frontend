@@ -12,16 +12,23 @@ import eventsApi from '../../common/services/eventsApi'
 const SearchPage = () => {
 
     const [featuredEvents, setFeaturedEvents] = useState([])
+    const [upcomingEvents, setUpcomingEvents] = useState([])
 
     useEffect(() => {
-        async function getEvents() {
+        async function getFeaturedEvents() {
             const featuredEvents = await eventsApi.getFeatured(3)
             console.log(featuredEvents)
             setFeaturedEvents(featuredEvents)
         }
 
-        getEvents()
+        async function getUpcomingEvents() {
+            const upcomingEvents = await eventsApi.all()
+            console.log(upcomingEvents)
+            setUpcomingEvents(upcomingEvents.items)
+        }
 
+        getFeaturedEvents()
+        getUpcomingEvents()
     }, [])
 
     return (
@@ -51,7 +58,7 @@ const SearchPage = () => {
                 <h2 className="h5">Events</h2>
                 <p className="body">All upcoming events</p>
                 <div className="mt-4"></div>
-                <EventList />
+                <EventList events={upcomingEvents} />
             </section>
         </div>
     )
