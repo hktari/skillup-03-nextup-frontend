@@ -17,8 +17,15 @@ function all(startIdx, pageSize) {
 }
 
 // POST /event (auth guard)
-function create(event) {
-    return axios.post('/event', event)
+function create(title, description, datetime, imageBase64, location, max_users) {
+    return axios.post('/event', {
+        title,
+        description,
+        datetime,
+        imageBase64,
+        location,
+        max_users
+    })
 }
 
 // DELETE /event (auth guard)
@@ -27,8 +34,15 @@ function remove(eventId) {
 }
 
 // PUT /event (auth guard)
-function update(event) {
-    return axios.put('/event/' + eventId, event)
+function update(eventId, title, description, datetime, imageBase64, location, max_users) {
+    return axios.put('/event/' + eventId,{
+        title,
+        description,
+        datetime,
+        imageBase64,
+        location,
+        max_users
+    })
 }
 
 // GET /event/search (?date&location)
@@ -45,6 +59,19 @@ function search(date, location) {
 function getDetails(eventId) {
     return axios.get('/event/' + eventId)
 }
+
+
+// POST /event/{id}/book
+function performBooking(eventId) {
+    return axios.post(`/event/${eventId}/book`)
+}
+
+// DELETE /event/{id}/book
+function undoBooking(eventId){
+    return axios.delete(`/event/${eventId}/book`)
+}
+
+
 
 const eventsApi = {
     getFeatured,
