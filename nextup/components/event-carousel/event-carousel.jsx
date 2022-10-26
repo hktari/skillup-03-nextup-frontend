@@ -35,6 +35,7 @@ const EventCarousel = ({ events }) => {
                         {group.map(ev => (
                             <EventCard
                                 key={ev.eventId}
+                                id={ev.eventId}
                                 imageUrl={ev.imageUrl}
                                 datetime={ev.datetime}
                                 title={ev.title}
