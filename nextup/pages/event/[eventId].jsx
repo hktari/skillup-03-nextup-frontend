@@ -3,6 +3,7 @@ import styles from './event-details.module.css'
 
 import eventsApi from '../../common/services/eventsApi'
 import Image from 'next/image'
+import Header from '../../components/layout/header/header'
 
 const EventDetailPage = ({ event }) => {
 
@@ -39,6 +40,17 @@ const EventDetailPage = ({ event }) => {
   )
 }
 
+EventDetailPage.getLayout = function getLayout(page) {
+  return (
+    <>
+      <div className="page-wrap">
+        <Header />
+        <main>{page}</main>
+      </div>
+    </>
+  )
+}
+
 export async function getStaticPaths() {
   const events = await eventsApi.all()
   return {
@@ -55,9 +67,15 @@ export async function getStaticProps(context) {
   console.log('getStaticProps', context.params.eventId)
   console.log(event)
 
-  return {
-    // Passed to the page component as props
-    props: { event: JSON.parse(JSON.stringify(event)) },
+  if (!event) {
+    return {
+      notFound: true,
+    }
+  } else {
+    return {
+      // Passed to the page component as props
+      props: { event: JSON.parse(JSON.stringify(event)) }
+    }
   }
 }
 

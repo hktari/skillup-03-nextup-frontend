@@ -28,9 +28,9 @@ const EventCarousel = ({ events }) => {
 
     return (
         <Carousel controls={false}>
-            {splitIntoGroupsOfThree(events).map(group =>
+            {splitIntoGroupsOfThree(events).map((group, idx) =>
             (
-                <CarouselItem>
+                <CarouselItem key={idx}>
                     <div className={styles['item-container']}>
                         {group.map(ev => (
                             <EventCard
