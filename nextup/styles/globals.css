@@ -14,14 +14,19 @@ body {
 
 body {
   position: relative;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body>div {
   height: 100%;
 }
 
-.offset-top-header {
-  padding-top: var(--header-height) !important;
+@media (min-width:768px) {
+  .offset-app-header {
+    padding-top: calc(64px + var(--header-height)) !important;
+    position: relative;
+  }
 }
 
 .page-wrap {
@@ -185,4 +190,14 @@ body>div {
 a {
   text-decoration: none;
   color: var(--color-black);
+}
+
+/* ---------------------------- bootstrap custom ---------------------------- */
+.bg-alt {
+  background-color: var(--color-alt);
+}
+
+.container {
+  --bs-gutter-x: 0rem;
+  --bs-gutter-y: 0;
 }

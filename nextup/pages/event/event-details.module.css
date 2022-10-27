@@ -63,7 +63,7 @@
     border-radius: 16px;
 }
 
-@media(min-width:992px) {
+@media(min-width:768px) {
     .container {
         flex-direction: row;
         justify-content: space-evenly;
