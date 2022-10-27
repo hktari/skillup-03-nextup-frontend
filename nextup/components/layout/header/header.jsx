@@ -3,7 +3,7 @@ import styles from './header.module.css'
 import Link from 'next/link'
 
 const Header = () => {
-    const [loggedIn, setLoggedIn] = useState(false)
+    const [loggedIn, setLoggedIn] = useState(true)
 
     return (
         <>
@@ -31,7 +31,7 @@ const Header = () => {
                     </div>
                     <div hidden={!loggedIn} className={styles.buttons}>
                         <button className="btn">Logout</button>
-                        <button className="btn-circle"><i class="bi bi-person-circle"></i></button>
+                        <button className="btn-circle color-white"><i className="bi bi-person-circle"></i></button>
                     </div>
                 </div>
             </div>

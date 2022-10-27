@@ -152,6 +152,20 @@ body {
   border-radius: 16px;
 }
 
+.btn-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  width: 46px;
+  border-radius: 50%;
+  border: 0;
+  outline: none;
+}
+.btn-circle i{
+  font-size: 46px;
+}
+
 /* ---------------------------------- input --------------------------------- */
 
 .input:focus,
@@ -162,7 +176,7 @@ body {
 
 /* --------------------------------- anchor --------------------------------- */
 
-a{
+a {
   text-decoration: none;
   color: var(--color-black);
 }
