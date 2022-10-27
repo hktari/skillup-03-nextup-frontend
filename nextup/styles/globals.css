@@ -22,6 +22,12 @@ body>div {
   height: 100%;
 }
 
+
+.offset-app-header{
+  padding-top: calc(var(--header-height)) !important;
+  position: relative;
+}
+
 @media (min-width:768px) {
   .offset-app-header {
     padding-top: calc(64px + var(--header-height)) !important;
