@@ -207,3 +207,7 @@ a {
   --bs-gutter-x: 0rem;
   --bs-gutter-y: 0;
 }
+
+.carousel-indicators button[data-bs-target]{
+  background-color: var(--color-black);
+}

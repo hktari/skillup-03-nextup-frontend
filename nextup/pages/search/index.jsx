@@ -53,7 +53,7 @@ const SearchPage = () => {
 
                 <section className={`container p-4 d-none d-md-block ${styles.featured}`}>
                     <h2 className="h5">Featured events</h2>
-                    {/* <EventCarousel events={featuredEvents} /> */}
+                    <EventCarousel events={featuredEvents} />
                 </section>
                 <section className={`container  p-4 ${styles.events}`}>
                     <h2 className="h5">Events</h2>
