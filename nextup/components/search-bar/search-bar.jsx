@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './search-bar.module.css'
 import locationApi from '../../common/services/locationApi'
 
-const SearchBar = ({ onSearchResults }) => {
+const SearchBar = ({ onItemSelected }) => {
     const [date, setDate] = useState(new Date().toISOString().substring(0, 10))
     const [searchResults, setSearchResults] = useState([])
     const [text, setText] = useState('')
@@ -17,13 +17,12 @@ const SearchBar = ({ onSearchResults }) => {
         } catch (error) {
             console.error(error)
         }
-
-        onSearchResults && onSearchResults(searchResults)
     }
 
     function selectResult(result) {
         setText(result)
         setSearchResults([])
+        onItemSelected(result)
     }
 
     useEffect(() => {

@@ -6,7 +6,7 @@ import styles from './landing-page.module.css'
 import Header from '../../components/layout/header/header';
 import SearchBar from '../../components/search-bar/search-bar';
 import Footer from '../../components/layout/footer/footer';
-
+import Link from 'next/link'
 export default function LandingPage() {
   return (
     <>
@@ -37,9 +37,12 @@ export default function LandingPage() {
 
                 <div className="mt-5">
                 </div>
-                <div className={styles['search-bar']}>
-                  <SearchBar />
-                </div>
+                <Link href={'/search'}>
+                  <div className={styles['search-bar']} >
+                    <SearchBar onItemSelected={text => { }} />
+                    <div className={styles.overlay}></div>
+                  </div>
+                </Link>
                 <div className="mt-5">
                 </div>
               </section>

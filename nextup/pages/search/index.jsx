@@ -13,6 +13,7 @@ const SearchPage = () => {
 
     const [featuredEvents, setFeaturedEvents] = useState([])
     const [upcomingEvents, setUpcomingEvents] = useState([])
+    const [searchText, setSearchText] = useState('')
 
     useEffect(() => {
         async function getFeaturedEvents() {
@@ -42,7 +43,7 @@ const SearchPage = () => {
                         <h3 className="h5 color-black">SEARCH FOR EVENTS</h3>
                         <h1 className="h2 color-primary">What is next ?</h1>
                         <div className="mt-4"></div>
-                        <SearchBar />
+                        <SearchBar onItemSelected={text => setSearchText(text)} />
                     </div>
                 </section>
 
