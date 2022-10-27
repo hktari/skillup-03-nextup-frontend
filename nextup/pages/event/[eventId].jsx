@@ -71,7 +71,7 @@ export async function getStaticPaths() {
     paths: events.items.map(ev => {
       return { params: { eventId: ev.eventId } }
     }),
-    fallback: false, // can also be true or 'blocking'
+    fallback: true, // can also be true or 'blocking'
   }
 }
 

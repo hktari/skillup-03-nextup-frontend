@@ -4,12 +4,31 @@
     left: 0;
     width: 100vw;
     height: var(--header-height);
+    z-index: 2;
+    background-color: orange;
 }
 
 
 .logo {
+    position: absolute;
+    top: 50%;
+    left: 35px;
+    transform: translate(0, -50%);
     width: 24px;
     height: 24px;
+    color: var(--color-primary);
+}
+
+.menu-btn{
+    position: absolute;
+    top: 50%;
+    right: 35px;
+    height: 40px;
+    width: 40px;
+    transform: translate(0, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (min-width:992px) {
