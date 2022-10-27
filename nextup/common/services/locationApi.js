@@ -4,7 +4,7 @@ import axios from './http'
 function search(text) {
     return axios.get('/location/autocomplete', {
         params: {
-            text
+            text,
         }
     })
 }
