@@ -6,6 +6,7 @@ const SearchBar = ({ onSearchResults }) => {
     const [date, setDate] = useState(new Date().toISOString().substring(0, 10))
     const [searchResults, setSearchResults] = useState([])
     const [text, setText] = useState('')
+    const [searchText, setSearchText] = useState('')
 
     async function performAutocomplete() {
         try {
@@ -20,15 +21,20 @@ const SearchBar = ({ onSearchResults }) => {
         onSearchResults && onSearchResults(searchResults)
     }
 
+    function selectResult(result) {
+        setText(result)
+        setSearchResults([])
+    }
+
     useEffect(() => {
         const autocompleteTask = setTimeout(() => {
-            performAutocomplete(text)
+            performAutocomplete(searchText)
         }, 750)
 
         return () => {
             clearTimeout(autocompleteTask)
         }
-    }, [text])
+    }, [searchText])
 
 
     return (
@@ -37,7 +43,10 @@ const SearchBar = ({ onSearchResults }) => {
                 <div className={styles.search}>
                     <i className="bi bi-geo-alt-fill"></i>
                     <input
-                        onChange={e => setText(e.currentTarget.value)}
+                        onChange={e => {
+                            setText(e.currentTarget.value)
+                            setSearchText(e.currentTarget.value)
+                        }}
                         value={text} className='body input'
                         type="text" placeholder='Search by location' />
                 </div>
@@ -50,7 +59,7 @@ const SearchBar = ({ onSearchResults }) => {
                 <div className={styles.results} hidden={searchResults?.length == 0}>
                     <ul>
                         {searchResults.map(res => (
-                            <li>
+                            <li onClick={() => selectResult(res)}>
                                 <div className="body">{res}</div>
                             </li>
                         ))}
