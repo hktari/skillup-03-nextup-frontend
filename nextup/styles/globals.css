@@ -159,3 +159,10 @@ body {
   border: none;
   outline: none;
 }
+
+/* --------------------------------- anchor --------------------------------- */
+
+a{
+  text-decoration: none;
+  color: var(--color-black);
+}
