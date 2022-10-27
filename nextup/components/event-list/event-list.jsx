@@ -9,7 +9,7 @@ const EventList = ({ events }) => {
                 {
                     events.map(ev => (
                         <EventListItem
-                            key={ev.eventId}
+                            key={`967512dc-bfc1-4d84-932c-ae2e5fe5f1ec-${ev.eventId}`}
                             id={ev.eventId} datetime={ev.datetime} location={ev.location}
                             title={ev.title} 
                         />))

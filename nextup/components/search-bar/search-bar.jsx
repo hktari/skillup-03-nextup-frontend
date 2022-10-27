@@ -4,14 +4,19 @@ import locationApi from '../../common/services/locationApi'
 import eventsApi from '../../common/services/eventsApi'
 
 const SearchBar = ({ onSearchResults }) => {
-    const [date, setDate] = useState(new Date().toISOString().substring(0, 10))
+    const [date, setDate] = useState('')
     const [locationSearchResults, setLocationSearchResults] = useState([])
     const [text, setText] = useState('')
     const [searchText, setSearchText] = useState('')
 
     async function performAutocomplete() {
         try {
-            const searchResults = await locationApi.search(text)
+            const formattedText = text?.trim()
+            if(!formattedText){
+                return
+            }
+
+            const searchResults = await locationApi.search(formattedText)
             console.log(searchResults)
             const addressList = searchResults.features.map(res => res.properties?.formatted)
             setLocationSearchResults(addressList)
@@ -71,7 +76,11 @@ const SearchBar = ({ onSearchResults }) => {
                     <i className="bi bi-calendar"></i>
                     <input
                         placeholder='dd.mm.yyyy'
-                        className='body input' type="date" value={date} onChange={e => setDate(e.currentTarget.value)} />
+                        className='body input' type="date" value={date}
+                        onChange={e => {
+                            setDate(e.currentTarget.value)
+                        }
+                        } />
                 </div>
                 <div className={styles.results} hidden={locationSearchResults?.length == 0}>
                     <ul>
