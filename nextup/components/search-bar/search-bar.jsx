@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import styles from './search-bar.module.css'
 import locationApi from '../../common/services/locationApi'
+import eventsApi from '../../common/services/eventsApi'
 
-const SearchBar = ({ onItemSelected }) => {
+const SearchBar = ({ onSearchResults }) => {
     const [date, setDate] = useState(new Date().toISOString().substring(0, 10))
-    const [searchResults, setSearchResults] = useState([])
+    const [locationSearchResults, setLocationSearchResults] = useState([])
     const [text, setText] = useState('')
     const [searchText, setSearchText] = useState('')
 
@@ -13,16 +14,33 @@ const SearchBar = ({ onItemSelected }) => {
             const searchResults = await locationApi.search(text)
             console.log(searchResults)
             const addressList = searchResults.features.map(res => res.properties?.formatted)
-            setSearchResults(addressList)
+            setLocationSearchResults(addressList)
         } catch (error) {
             console.error(error)
         }
     }
 
+    async function performSearch() {
+        const formattedText = text?.trim()
+        const formattedDate = date
+        if (!formattedText && formattedDate) {
+            return
+        }
+
+        try {
+            console.log('performing search')
+            const searchResults = await eventsApi.search(formattedDate, formattedText)
+            console.log(searchResults)
+            onSearchResults(searchResults)
+        } catch (error) {
+            console.error(error)
+        }
+
+    }
+
     function selectResult(result) {
         setText(result)
-        setSearchResults([])
-        onItemSelected(result)
+        setLocationSearchResults([])
     }
 
     useEffect(() => {
@@ -55,9 +73,9 @@ const SearchBar = ({ onItemSelected }) => {
                         placeholder='dd.mm.yyyy'
                         className='body input' type="date" value={date} onChange={e => setDate(e.currentTarget.value)} />
                 </div>
-                <div className={styles.results} hidden={searchResults?.length == 0}>
+                <div className={styles.results} hidden={locationSearchResults?.length == 0}>
                     <ul>
-                        {searchResults.map(res => (
+                        {locationSearchResults.map(res => (
                             <li onClick={() => selectResult(res)}>
                                 <div className="body">{res}</div>
                             </li>
@@ -66,7 +84,7 @@ const SearchBar = ({ onItemSelected }) => {
                 </div>
             </div>
             <div className={styles.bottom}>
-                <button onClick={() => performAutocomplete()} className="btn btn-primary">Search</button>
+                <button onClick={() => performSearch()} className="btn btn-primary">Search</button>
             </div>
 
         </div>

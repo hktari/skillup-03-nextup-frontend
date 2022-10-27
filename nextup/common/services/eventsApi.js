@@ -6,7 +6,7 @@ function getFeatured(count) {
     for (let i = 0; i < count; i++) {
         featuredEvents.push(axios.get('/event/featured'))
     }
-    
+
     return Promise.all(featuredEvents)
 }
 
@@ -52,6 +52,8 @@ function update(eventId, title, description, datetime, imageBase64, location, ma
 
 // GET /event/search (?date&location)
 function search(date, location) {
+    return all(3, 3)
+
     return axios.get('/event/search', {
         params: {
             date,

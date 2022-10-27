@@ -13,7 +13,8 @@ const SearchPage = () => {
 
     const [featuredEvents, setFeaturedEvents] = useState([])
     const [upcomingEvents, setUpcomingEvents] = useState([])
-    const [searchText, setSearchText] = useState('')
+    const [searchedEvents, setSearchedEvents] = useState([])
+    const [showSearchResults, setShowSearchResults] = useState(false)
 
     useEffect(() => {
         async function getFeaturedEvents() {
@@ -32,6 +33,14 @@ const SearchPage = () => {
         getUpcomingEvents()
     }, [])
 
+    function onSearch(results) {
+        setSearchedEvents(results.items)
+    }
+    useEffect(() => {
+        setShowSearchResults(searchedEvents?.length)      
+    }, [searchedEvents])
+    
+
     return (
         <div className="offset-app-header">
             <div className={`${styles.container}`}>
@@ -43,24 +52,30 @@ const SearchPage = () => {
                         <h3 className="h5 color-black">SEARCH FOR EVENTS</h3>
                         <h1 className="h2 color-primary">What is next ?</h1>
                         <div className="mt-4"></div>
-                        <SearchBar onItemSelected={text => setSearchText(text)} />
+                        <SearchBar onSearchResults={results => onSearch(results)} />
                     </div>
                 </section>
 
-                <section className={`d-md-none ${styles.featured}`}>
+                <section className={`d-md-none ${styles.featured}`} hidden={showSearchResults}>
                     <h2 className="h5 mx-4">Featured events</h2>
                     <HorizontalScroll events={featuredEvents} />
                 </section>
 
-                <section className={`container p-4 d-none d-md-block ${styles.featured}`}>
+                <section className={`container p-4 d-none d-md-block ${styles.featured}`} hidden={showSearchResults}>
                     <h2 className="h5">Featured events</h2>
                     <EventCarousel events={featuredEvents} />
                 </section>
-                <section className={`container  p-4 ${styles.events}`}>
+                <section className={`container  p-4 ${styles.events}`} hidden={showSearchResults}>
                     <h2 className="h5">Events</h2>
                     <p className="body">All upcoming events</p>
                     <div className="mt-4"></div>
                     <EventList events={upcomingEvents} />
+                </section>
+
+                <section className={`container p-4 ${styles.results}`} hidden={!showSearchResults}>
+                    <h2 className="h5">Events</h2>
+                    <p className="body" hidden={searchedEvents?.length}>nothing found</p>
+                    <EventList events={searchedEvents} />
                 </section>
             </div>
         </div>
