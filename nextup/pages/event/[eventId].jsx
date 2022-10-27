@@ -1,12 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './event-details.module.css'
-
-import eventsApi from '../../common/services/eventsApi'
 import Image from 'next/image'
 import Header from '../../components/layout/header/header'
 import Footer from '../../components/layout/footer/footer'
 
+import { useRouter } from 'next/router'
+import eventsApi from '../../common/services/eventsApi'
+
+
 const EventDetailPage = ({ event }) => {
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [isEventBooked, setIsEventBooked] = useState(false)
+
+  const router = useRouter()
+
+  async function onBookEvent() {
+    try {
+      if (isEventBooked) {
+        console.log('performing booking')
+        await eventsApi.performBooking(event.eventId)
+        setIsEventBooked(true)
+      } else {
+        console.log('undo booking')
+        await eventsApi.undoBooking(event.eventId)
+        setIsEventBooked(false)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div className={styles.container}>
 
@@ -40,18 +63,27 @@ const EventDetailPage = ({ event }) => {
           <h2 className="h5 mt-4">EVENT DESCRIPTION</h2>
           <p className="body">{event?.description}</p>
 
-          <button className={`btn btn-primary my-5 d-block ms-auto ${styles.book}`}>Book</button>
+          <button
+            onClick={onBookEvent}
+            hidden={!loggedIn}
+            className={`btn ${isEventBooked ? 'btn-primary' : 'btn-alt'} my-5 d-block ms-auto ${isEventBooked ? styles.book : styles.unbook}`}>
+            {isEventBooked ? 'Book' : 'Unbook'}
+          </button>
+          <button
+            onClick={() => router.push('/login')}
+            hidden={loggedIn}
+            className={`btn btn-primary my-5 d-block ms-auto ${styles.book}`}>Login</button>
+
         </div>
         <div className="d-none d-md-block">
           <Footer />
-        </div>  
+        </div>
       </div>
     </div>
   )
 }
 
 EventDetailPage.getLayout = function getLayout(page) {
-  console.warn('IM HERE')
   return (
     <>
       <div className="page-wrap">

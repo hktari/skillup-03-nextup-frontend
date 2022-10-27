@@ -88,6 +88,8 @@ const eventsApi = {
     update,
     search,
     getDetails,
+    performBooking,
+    undoBooking
 }
 
 export default eventsApi

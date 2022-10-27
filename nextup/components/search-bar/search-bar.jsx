@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './search-bar.module.css'
 import locationApi from '../../common/services/locationApi'
 import eventsApi from '../../common/services/eventsApi'
+import { v4 as uuidv4 } from 'uuid';
 
 const SearchBar = ({ onSearchResults }) => {
     const [date, setDate] = useState('')
@@ -85,7 +86,7 @@ const SearchBar = ({ onSearchResults }) => {
                 <div className={styles.results} hidden={locationSearchResults?.length == 0}>
                     <ul>
                         {locationSearchResults.map(res => (
-                            <li onClick={() => selectResult(res)}>
+                            <li key={uuidv4()} onClick={() => selectResult(res)}>
                                 <div className="body">{res}</div>
                             </li>
                         ))}
