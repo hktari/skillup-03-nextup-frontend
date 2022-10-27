@@ -1,13 +1,15 @@
 .container {
+    position: relative;
     background: #FFFFFF;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
     border-radius: 32px;
 }
 
 .top {
-    padding: 18px 16px;
+    position: relative;
     display: flex;
     justify-content: center;
+    padding: 18px 16px;
 }
 
 
@@ -41,6 +43,33 @@
 
 .bottom button{
     width: 100%;
+}
+
+.results{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    border-radius: 16px;
+    background-color: #FBEAEB;
+    overflow: hidden;
+}
+
+.results ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.results ul li{
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.results ul li:hover{
+    background-color: #2F3C7EAA;    
+    color: #fff;
 }
 
 

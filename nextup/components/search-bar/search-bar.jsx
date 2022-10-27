@@ -19,14 +19,28 @@ const SearchBar = ({ onSearchResults }) => {
                 </div>
                 <div className={styles.date}>
                     <i className="bi bi-calendar"></i>
-                    <input 
-                    placeholder='dd.mm.yyyy'
-                    className='body input' type="date" value={date} onChange={e => setDate(e.currentTarget.value)} />
+                    <input
+                        placeholder='dd.mm.yyyy'
+                        className='body input' type="date" value={date} onChange={e => setDate(e.currentTarget.value)} />
+                </div>
+                <div className={styles.results}>
+                    <ul>
+                        <li>
+                            <div className="body">first</div>
+                        </li>
+                        <li>
+                            <div className="body">second</div>
+                        </li>
+                        <li>
+                            <div className="body">third</div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div className={styles.bottom}>
                 <button onClick={() => performSearch()} className="btn btn-primary">Search</button>
             </div>
+
         </div>
     )
 }
