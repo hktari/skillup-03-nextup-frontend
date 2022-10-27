@@ -1,13 +1,12 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
-import Button from 'react-bootstrap/Button';
 import EventCard from '../../components/event-card';
 import styles from './landing-page.module.css'
 import Header from '../../components/layout/header/header';
 import SearchBar from '../../components/search-bar/search-bar';
 
-export default function Home() {
+export default function Search() {
   return (
     <>
       <div className={styles.container}>

@@ -5,3 +5,16 @@
     width: 100vw;
     height: var(--header-height);
 }
+
+
+.logo {
+    width: 24px;
+    height: 24px;
+}
+
+@media (min-width:992px) {
+    .logo {
+        width: 46px;
+        height: 46px;
+    }
+}
