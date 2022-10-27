@@ -9,9 +9,10 @@ function MyApp({ Component, pageProps }) {
   if (specialLayout) {
     return specialLayout(<Component {...pageProps} />)
   } else {
-    <Layout>
-      <Component  {...pageProps} />
-    </Layout>
+    return (
+      <Layout>
+        <Component  {...pageProps} />
+      </Layout>)
   }
 }
 

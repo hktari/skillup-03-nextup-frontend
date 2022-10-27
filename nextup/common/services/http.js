@@ -20,18 +20,22 @@ axios.interceptors.response.use(function (response) {
 });
 
 axios.defaults.transformResponse = [function (data) {
-    const dateKeyRx = /date/i
-    return JSON.parse(data, (key, value) => {
-        if (dateKeyRx.test(key)) {
-            try {
-                return new Date(value)
-            } catch (error) {
-                console.error('Failed to parse date', error)
+    try {
+        const dateKeyRx = /date/i
+        return JSON.parse(data, (key, value) => {
+            if (dateKeyRx.test(key)) {
+                try {
+                    return new Date(value)
+                } catch (error) {
+                    console.error('Failed to parse date', error)
+                }
+            } else {
+                return value
             }
-        } else {
-            return value
-        }
-    })
+        })
+    } catch (error) {
+        return undefined
+    }
 }]
 
 
