@@ -7,32 +7,30 @@ const Header = () => {
 
     return (
         <>
-            <div className={`container d-none d-md-block`}>
-                <div className={styles.container}>
-                    <img className={styles.logo} src='/logo.svg' />
+            <div className={`container d-none d-md-block ${styles.container}`}>
+                <img className={styles.logo} src='/logo.svg' />
 
-                    <nav className={styles.nav}>
-                        <ul className='body'>
-                            <li>
-                                <Link href={'/'}>Home</Link>
-                            </li>
-                            <li>
-                                <Link href={'/search'}>Search</Link>
-                            </li>
+                <nav className={styles.nav}>
+                    <ul className='body'>
+                        <li>
+                            <Link href={'/'}>Home</Link>
+                        </li>
+                        <li>
+                            <Link href={'/search'}>Search</Link>
+                        </li>
 
-                            <li hidden={!loggedIn}>
-                                <Link href={'/event-manager'}>Event Manager</Link>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div hidden={loggedIn} className={styles.buttons}>
-                        <button className="btn">Login</button>
-                        <button className="btn btn-primary">Sign up</button>
-                    </div>
-                    <div hidden={!loggedIn} className={styles.buttons}>
-                        <button className="btn">Logout</button>
-                        <button className="btn-circle color-white"><i className="bi bi-person-circle"></i></button>
-                    </div>
+                        <li hidden={!loggedIn}>
+                            <Link href={'/event-manager'}>Event Manager</Link>
+                        </li>
+                    </ul>
+                </nav>
+                <div hidden={loggedIn} className={styles.buttons}>
+                    <button className="btn">Login</button>
+                    <button className="btn btn-primary">Sign up</button>
+                </div>
+                <div hidden={!loggedIn} className={styles.buttons}>
+                    <button className="btn">Logout</button>
+                    <button className="btn-circle color-white"><i className="bi bi-person-circle"></i></button>
                 </div>
             </div>
 

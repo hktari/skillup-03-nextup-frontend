@@ -2,6 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  height: 100%;
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -13,6 +14,10 @@ body {
 
 body {
   position: relative;
+}
+
+body>div {
+  height: 100%;
 }
 
 .offset-top-header {
@@ -162,7 +167,8 @@ body {
   border: 0;
   outline: none;
 }
-.btn-circle i{
+
+.btn-circle i {
   font-size: 46px;
 }
 
