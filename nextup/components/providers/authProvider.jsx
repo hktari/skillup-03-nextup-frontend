@@ -22,6 +22,7 @@ export default function AuthProvider({ children }) {
 
     async function login(email, password) {
         const jwt = await authApi.login(email, password)
+        console.log('login complete', jwt)
         setAccessToken(jwt)
         console.log('retrieving user profile')
         setUser(await profileApi.get())
