@@ -33,7 +33,7 @@ const EventManagerPage = () => {
                     <section className={styles.add}>
                         <AddEventComponent />
                     </section>
-                    <section className={`mt-5 ${styles.events}`}>
+                    <section className={`my-5 ${styles.events}`}>
                         <h2 className="h4 color-black">Added events</h2>
                         <EventList events={addedEvents} canEdit={true} />
                     </section>

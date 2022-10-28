@@ -240,3 +240,7 @@ a {
 .form-control:focus{
   border-color: var(--color-primary);
 }
+
+textarea.form-control{
+  resize: none;
+}
