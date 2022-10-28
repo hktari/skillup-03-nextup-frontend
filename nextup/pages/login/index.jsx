@@ -19,7 +19,7 @@ const Login = () => {
             try {
                 const result = await login(email, password)
                 console.log(result)
-                router.push('/dashboard')
+                router.push('/search')
             } catch (error) {
                 console.error(error)
             }

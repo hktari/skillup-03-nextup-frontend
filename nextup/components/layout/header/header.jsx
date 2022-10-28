@@ -46,7 +46,10 @@ const Header = () => {
                         onClick={() => {
                             router.push('/profile')
                         }}
-                        className="btn-circle color-white"><i className="bi bi-person-circle"></i></button>
+                        className={`btn-circle color-white ${styles.avatar}`}>
+                        <i className="bi bi-person-circle"></i>
+                        <img src={user?.imageUrl} alt={user?.firstName} />
+                    </button>
                 </div>
             </div>
 
