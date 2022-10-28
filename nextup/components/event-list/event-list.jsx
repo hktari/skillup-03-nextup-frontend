@@ -2,7 +2,7 @@ import React from 'react'
 import EventListItem from '../event-list-item/event-list-item'
 import styles from './event-list.module.css'
 
-const EventList = ({ events }) => {
+const EventList = ({ events, canEdit = false }) => {
     return (
         <div className={styles.container}>
             <div className={styles.list}>
@@ -10,8 +10,9 @@ const EventList = ({ events }) => {
                     events.map(ev => (
                         <EventListItem
                             key={`967512dc-bfc1-4d84-932c-ae2e5fe5f1ec-${ev.eventId}`}
+                            canEdit={canEdit}
                             id={ev.eventId} datetime={ev.datetime} location={ev.location}
-                            title={ev.title} 
+                            title={ev.title}
                         />))
                 }
             </div>

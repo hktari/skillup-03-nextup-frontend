@@ -8,7 +8,7 @@ import { useAuth } from '../../components/providers/authProvider'
 import AddEventComponent from '../../components/add-event/add-event'
 
 const EventManagerPage = () => {
-  
+
     const [addedEvents, setAddedEvents] = useState([])
     const { state: { user } } = useAuth()
 
@@ -35,7 +35,7 @@ const EventManagerPage = () => {
                     </section>
                     <section className={`mt-5 ${styles.events}`}>
                         <h2 className="h4 color-black">Added events</h2>
-                        <EventList events={addedEvents} />
+                        <EventList events={addedEvents} canEdit={true} />
                     </section>
                 </div>
             </div>
