@@ -127,7 +127,7 @@ const AddEventComponent = () => {
                 </div>
                 <button
                     hidden={imageBase64}
-                    className="btn btn-dark w-100"
+                    className="btn btn-dark w-100 mb-3"
                     onClick={(ev) => {
                         ev.preventDefault();
                         selectedImageRef.current?.click()

@@ -12,7 +12,7 @@ const Index = () => {
         if (!user) {
             router.replace('/landing-page')
         } {
-            router.replace('/dashboard')
+            router.replace('/search')
         }
     }, [router.pathname, user])
 

@@ -1,7 +1,40 @@
-import { useContext, useState, createContext } from "react";
+import { useContext, useEffect, useState, createContext } from "react";
 import { setAuthBearer } from "../../common/services/http";
 import authApi from '../../common/services/authApi'
 import profileApi from '../../common/services/profileApi'
+import Router, { useRouter } from 'next/router'
+
+function getValidTokenOrNull() {
+    const jwtJSON = localStorage.getItem('jwt')
+
+    if (jwtJSON) {
+        const jwt = JSON.parse(jwtJSON, (key, val) => {
+            if (key === 'expiresAt') {
+                return new Date(val)
+            }
+            return val
+        })
+
+        if (jwt.expiresAt && jwt.expiresAt.getTime() > Date.now()) {
+            return jwt.access_token
+        } else {
+            return null
+        }
+    }
+
+    return null
+}
+
+
+function setAccessToken(jwt) {
+    localStorage.setItem("jwt", JSON.stringify(jwt));
+    setAuthBearer(jwt.access_token)
+}
+
+function clearAccessToken() {
+    localStorage.setItem("jwt", "");
+    setAuthBearer('')
+}
 
 const AuthContext = createContext({ state: {}, actions: {} });
 
@@ -9,16 +42,28 @@ const AuthContext = createContext({ state: {}, actions: {} });
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null)
 
+    const router = useRouter()
 
-    function setAccessToken(jwt) {
-        localStorage.setItem("jwt", JSON.stringify(jwt));
-        setAuthBearer(jwt.access_token)
-    }
+    // get user profile on app start if valid token exists
+    useEffect(() => {
+        async function getUserProfile() {
+            try {
+                const user = await profileApi.get()
+                setUser(user)
+                router.replace('/')
+            } catch (error) {
+                console.error('Failed to get user profilo info', error)
+            }
+        }
 
-    function clearAccessToken() {
-        localStorage.setItem("jwt", "");
-        setAuthBearer('')
-    }
+        const accessToken = getValidTokenOrNull()
+        if (accessToken) {
+            console.log('performing autologin')
+            setAuthBearer(accessToken)
+            getUserProfile()
+        }
+    }, [])
+
 
     async function login(email, password) {
         const jwt = await authApi.login(email, password)
@@ -51,21 +96,5 @@ export default function AuthProvider({ children }) {
 export function useAuth() {
     return useContext(AuthContext)
 }
-
-// export function RequireAuth({ children }) {
-//     let auth = useAuth();
-//     // let location = useLocation();
-
-//     if (!auth.isLoggedIn()) {
-//         // Redirect them to the /login page, but save the current location they were
-//         // trying to go to when they were redirected. This allows us to send them
-//         // along to that page after they login, which is a nicer user experience
-//         // than dropping them off on the home page.
-//         return <Navigate to="/login" state={{ from: location }} replace />;
-//     }
-
-//     return children;
-// }
-
 
 
