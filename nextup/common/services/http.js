@@ -4,7 +4,7 @@ axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
-export function setAccessToken(token) {
+export function setAuthBearer(token) {
     axios.defaults.headers.common['Authorization'] = token;
 }
 

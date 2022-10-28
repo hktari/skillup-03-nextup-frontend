@@ -1,5 +1,7 @@
 import { useContext, useState, createContext } from "react";
-
+import { setAuthBearer } from "../../common/services/http";
+import authApi from '../../common/services/authApi'
+import profileApi from '../../common/services/profileApi'
 
 const AuthContext = createContext({ state: {}, actions: {} });
 
@@ -7,16 +9,27 @@ const AuthContext = createContext({ state: {}, actions: {} });
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null)
 
+
+    function setAccessToken(jwt) {
+        localStorage.setItem("jwt", JSON.stringify(jwt));
+        setAuthBearer(jwt.access_token)
+    }
+
+    function clearAccessToken() {
+        localStorage.setItem("jwt", "");
+        setAuthBearer('')
+    }
+
     async function login(email, password) {
-        console.log('login', email, password)
-        setUser({
-            email
-        })
+        const jwt = await authApi.login(email, password)
+        setAccessToken(jwt)
+        console.log('retrieving user profile')
+        setUser(await profileApi.get())
     }
 
     function logout() {
         setUser(null)
-        // todo: clear cache
+        clearAccessToken()
     }
 
     const value = {

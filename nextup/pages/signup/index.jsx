@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import authApi from '../../common/services/authApi'
 
-const Login = () => {
+const Signup = () => {
     const [email, setEmail] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -116,4 +116,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Signup
