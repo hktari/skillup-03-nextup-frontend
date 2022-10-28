@@ -1,0 +1,18 @@
+.avatar {
+    position: relative;
+    height: 72px;
+    width: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar img {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.avatar i {
+    font-size: 64px;
+}
