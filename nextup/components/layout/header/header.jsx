@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
 import styles from './header.module.css'
 import Link from 'next/link'
+import { useAuth } from '../../providers/authProvider'
+import { useRouter } from 'next/router'
 
 const Header = () => {
-    const [loggedIn, setLoggedIn] = useState(true)
+    const { state: { user }, actions: { logout } } = useAuth()
+    const router = useRouter()
+
+    function loggedIn() {
+        // cast object to boolean
+        return !!user
+    }
 
     return (
         <>
@@ -19,18 +27,26 @@ const Header = () => {
                             <Link href={'/search'}>Search</Link>
                         </li>
 
-                        <li hidden={!loggedIn}>
+                        <li hidden={!loggedIn()}>
                             <Link href={'/event-manager'}>Event Manager</Link>
                         </li>
                     </ul>
                 </nav>
-                <div hidden={loggedIn} className={styles.buttons}>
-                    <button className="btn">Login</button>
-                    <button className="btn btn-primary">Sign up</button>
+                <div hidden={loggedIn()} className={styles.buttons}>
+                    <button onClick={() => router.push('/login')} className="btn">Login</button>
+                    <button onClick={() => router.push('/signup')} className="btn btn-primary">Sign up</button>
                 </div>
-                <div hidden={!loggedIn} className={styles.buttons}>
-                    <button className="btn">Logout</button>
-                    <button className="btn-circle color-white"><i className="bi bi-person-circle"></i></button>
+                <div hidden={!loggedIn()} className={styles.buttons}>
+                    <button onClick={() => {
+                        logout()
+                        router.push('/')
+                    }}
+                        className="btn">Logout</button>
+                    <button
+                        onClick={() => {
+                            router.push('/profile')
+                        }}
+                        className="btn-circle color-white"><i className="bi bi-person-circle"></i></button>
                 </div>
             </div>
 
