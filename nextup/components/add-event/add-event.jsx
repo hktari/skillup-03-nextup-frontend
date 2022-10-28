@@ -10,11 +10,17 @@ const AddEventComponent = () => {
     const [eventName, setEventName] = useState('')
     const [description, setDescription] = useState('')
     const [location, setLocation] = useState('')
-    const [date, setDate] = useState(new Date().toDateString().substring(4, 6))
+    const [date, setDate] = useState()
     const [time, setTime] = useState('20:00')
     const [maxUsers, setMaxUsers] = useState(50)
     const [imageBase64, setImageBase64] = useState(null)
     const selectedImageRef = useRef(null)
+
+    useEffect(() => {
+        if (!imageBase64) {
+            clearImage()
+        }
+    }, [imageBase64])
 
     async function onSubmit(ev) {
         ev.preventDefault()
@@ -28,6 +34,7 @@ const AddEventComponent = () => {
                 eventName, description, datetime,
                 imageBase64, location, maxUsers)
             console.log('success', result)
+            resetForm()
         } catch (error) {
             console.error(error)
         }
@@ -51,11 +58,15 @@ const AddEventComponent = () => {
         }
     }
 
-    useEffect(() => {
-        if (!imageBase64) {
-            clearImage()
-        }
-    }, [imageBase64])
+    function resetForm() {
+        setEventName('')
+        setLocation('')
+        setDate('')
+        setTime('')
+        setMaxUsers(50)
+        setDescription('')
+        setImageBase64(null)
+    }
 
     function clearImage() {
         const selectedImgEl = document.getElementById('selectedImage')
