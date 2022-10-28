@@ -3,6 +3,7 @@ import PickAvatarComponent from '../../components/pick-avatar/pick-avatar'
 import styles from './login.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import authApi from '../../common/services/authApi'
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -10,6 +11,7 @@ const Login = () => {
     const [lastName, setLastName] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [imageBase64, setImageBase64] = useState(null)
 
     const router = useRouter()
 
@@ -17,12 +19,18 @@ const Login = () => {
         ev.preventDefault()
 
         if (validateForm()) {
-            router.push('/dashboard')
+            try {
+                const result = await authApi.signup(email, firstName, lastName, password, imageBase64)
+                console.log(result)
+                router.push('/dashboard')
+            } catch (error) {
+                console.error(error)
+            }
         }
     }
 
     function validateForm() {
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
             return false
         }
 
@@ -36,44 +44,49 @@ const Login = () => {
                 <h2 className="h4 color-dark">Get started with your free account today.</h2>
 
                 <div className="mt-4 text-center">
-                    <PickAvatarComponent onImagePicked={() => { }} />
+                    <PickAvatarComponent onImagePicked={(image) => setImageBase64(image)} />
                 </div>
                 <form onSubmit={onSubmit} className='mt-4'>
                     <div className="row">
                         <div className="col-6">
                             <div className="mb-3">
-                                <label for="firstName" className="form-label">First name</label>
+                                <label htmlFor="firstName" className="form-label">First name</label>
                                 <input
+                                    value={firstName} onChange={e => setFirstName(e.currentTarget.value)}
                                     required={true}
                                     type="text" className="form-control" id="firstName" />
                             </div>
                         </div>
                         <div className="col-6">
                             <div className="mb-3">
-                                <label for="lastName" className="form-label">Last name</label>
+                                <label htmlFor="lastName" className="form-label">Last name</label>
                                 <input
+                                    value={lastName} onChange={e => setLastName(e.currentTarget.value)}
                                     required={true}
                                     type="text" className="form-control" id="lastName" />
                             </div>
                         </div>
                     </div>
                     <div className="mb-3">
-                        <label for="exampleInputEmail1" className="form-label">Email address</label>
+                        <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                         <input
+                            value={email} onChange={e => setEmail(e.currentTarget.value)}
                             required={true}
                             type="email" className="form-control"
                             id="exampleInputEmail1" aria-describedby="emailHelp" />
                         <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div className="mb-3">
-                        <label for="password" className="form-label">Password</label>
+                        <label htmlFor="password" className="form-label">Password</label>
                         <input
+                            value={password} onChange={e => setPassword(e.currentTarget.value)}
                             required={true}
                             type="password" className="form-control" id="password" />
                     </div>
                     <div className="mb-3">
-                        <label for="confirmPassword" className="form-label">Confirm password</label>
+                        <label htmlFor="confirmPassword" className="form-label">Confirm password</label>
                         <input
+                            value={confirmPassword} onChange={e => setConfirmPassword(e.currentTarget.value)}
                             required={true}
                             type="password" className="form-control" id="confirmPassword" />
                     </div>
