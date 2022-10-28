@@ -23,7 +23,7 @@ body>div {
 }
 
 
-.offset-app-header{
+.offset-app-header {
   padding-top: calc(var(--header-height)) !important;
   position: relative;
 }
@@ -183,8 +183,7 @@ body>div {
   font-size: 46px;
 }
 
-/* ---------------------------------- input --------------------------------- */
-
+/* ---------------------------------- form ---------------------------------- */
 .input:focus,
 .input:focus-visible {
   border: none;
@@ -199,7 +198,7 @@ a {
 }
 
 /* ---------------------------- bootstrap custom ---------------------------- */
-.btn-dark{
+.btn-dark {
   border-radius: 32px;
 }
 
@@ -212,6 +211,28 @@ a {
   --bs-gutter-y: 0;
 }
 
-.carousel-indicators button[data-bs-target]{
+.carousel-indicators button[data-bs-target] {
   background-color: var(--color-black);
+}
+
+.form-label {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--color-black);
+}
+
+.form-control {
+  border-radius: 16px;
+  border-color: transparent;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--color-black);
+}
+
+.form-control:focus{
+  border-color: var(--color-primary);
 }

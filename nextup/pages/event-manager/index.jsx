@@ -1,13 +1,14 @@
 import React from 'react'
 import styles from './event-manager.module.css'
 import EventList from '../../components/event-list/event-list'
-import { useState, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import eventsApi from '../../common/services/eventsApi'
 import usersApi from '../../common/services/usersApi'
 import { useAuth } from '../../components/providers/authProvider'
+import AddEventComponent from '../../components/add-event/add-event'
 
 const EventManagerPage = () => {
-
+  
     const [addedEvents, setAddedEvents] = useState([])
     const { state: { user } } = useAuth()
 
@@ -25,48 +26,15 @@ const EventManagerPage = () => {
 
         getEvents()
     }, [user])
-
     return (
         <div className="bg-alt pt-5 px-4 px-md-0">
             <div className="container offset-app-header">
                 <div style={styles.container}>
                     <section className={styles.add}>
-                        <h2 className="h4 color-black">Add event</h2>
-                        <form>
-                            <div className="mb-3">
-                                <label for="name" className="form-label">Event name</label>
-                                <input type="text" className="form-control" id="name" />
-                            </div>
-                            <div className="mb-3">
-                                <label for="location" className="form-label">Location</label>
-                                <input type="text" className="form-control" id="location" />
-                            </div>
-                            <div className="row g-3 mb-3">
-                                <div className="col-4">
-                                    <div>
-                                        <label for="date" className="form-label">Date</label>
-                                        <input type="date" className="form-control" id="date" />
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div>
-                                        <label for="time" className="form-label">Hour</label>
-                                        <input type="time" className="form-control" id="time" />
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div>
-                                        <label for="max_users" className="form-label">Max users</label>
-                                        <input type="number" className="form-control" id="max_users" />
-                                    </div>
-                                </div>
-                            </div>
-                            <button className="btn btn-dark w-100">Add image</button>
-                            <button className="btn btn-primary w-100 mt-3 mt-md-0">Submit</button>
-                        </form>
+                        <AddEventComponent />
                     </section>
-                    <section className={styles.events}>
-                        <h2 className="h4 color-black">Add event</h2>
+                    <section className={`mt-5 ${styles.events}`}>
+                        <h2 className="h4 color-black">Added events</h2>
                         <EventList events={addedEvents} />
                     </section>
                 </div>
