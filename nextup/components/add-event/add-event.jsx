@@ -3,10 +3,12 @@ import styles from './add-event.module.css'
 
 import { fileToBase64 } from '../../common/util/fileUtil'
 import { useRef, useState, useEffect } from 'react'
+import eventsApi from '../../common/services/eventsApi'
 
 const AddEventComponent = () => {
 
     const [eventName, setEventName] = useState('')
+    const [description, setDescription] = useState('')
     const [location, setLocation] = useState('')
     const [date, setDate] = useState(new Date().toDateString().substring(4, 6))
     const [time, setTime] = useState('20:00')
@@ -14,9 +16,21 @@ const AddEventComponent = () => {
     const [imageBase64, setImageBase64] = useState(null)
     const selectedImageRef = useRef(null)
 
-    function onSubmit(ev) {
+    async function onSubmit(ev) {
         ev.preventDefault()
-        console.log('submit')
+        try {
+            const datetime = new Date(date)
+            const [hour, min] = time?.split(':')
+            datetime.setHours(hour ?? 0)
+            datetime.setMinutes(min ?? 0)
+            console.log('adding event', datetime)
+            const result = await eventsApi.create(
+                eventName, description, datetime,
+                imageBase64, location, maxUsers)
+            console.log('success', result)
+        } catch (error) {
+            console.error(error)
+        }
 
     }
 
@@ -90,6 +104,12 @@ const AddEventComponent = () => {
                                 type="number" className="form-control" id="max_users" />
                         </div>
                     </div>
+                </div>
+                <div className={`mb-3 ${styles.description}`}>
+                    <label for="description" className="form-label">Description</label>
+                    <textarea
+                        value={description} onChange={e => setDescription(e.currentTarget.value)}
+                        type="text" className="form-control" id="description" />
                 </div>
                 <div >
                     <img className={styles.image} id='selectedImage' alt="" hidden={imageBase64 === null} />
