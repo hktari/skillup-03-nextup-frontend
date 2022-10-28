@@ -199,6 +199,10 @@ a {
 }
 
 /* ---------------------------- bootstrap custom ---------------------------- */
+.btn-dark{
+  border-radius: 32px;
+}
+
 .bg-alt {
   background-color: var(--color-alt);
 }
