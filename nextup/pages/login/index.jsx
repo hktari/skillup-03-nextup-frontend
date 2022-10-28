@@ -12,7 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [imageBase64, setImageBase64] = useState(null)
-
+    const [errors, setErrors] = useState([])
     const router = useRouter()
 
     async function onSubmit(ev) {
@@ -30,11 +30,17 @@ const Login = () => {
     }
 
     function validateForm() {
+        let errors = []
         if (password !== confirmPassword) {
-            return false
+            errors.push('confirmPassword')
         }
 
-        return true
+        setErrors(errors)
+        return errors.length === 0
+    }
+    
+    function hasError(key) {
+        return errors.indexOf(key) !== -1;
     }
 
     return (
@@ -85,10 +91,17 @@ const Login = () => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="confirmPassword" className="form-label">Confirm password</label>
-                        <input
-                            value={confirmPassword} onChange={e => setConfirmPassword(e.currentTarget.value)}
-                            required={true}
-                            type="password" className="form-control" id="confirmPassword" />
+                        <div class={`input-group has-validation`}>
+                            <input
+                                value={confirmPassword}
+                                onChange={e => setConfirmPassword(e.currentTarget.value)}
+                                required={true}
+                                type="password" 
+                                className={`form-control ${hasError('confirmPassword') ? 'is-invalid' : ''}`} id="confirmPassword" />
+                            <div class="invalid-feedback">
+                                Passwords don't match.
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" className="btn btn-primary w-100">Sign up</button>
                 </form>
