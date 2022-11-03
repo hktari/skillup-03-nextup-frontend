@@ -80,7 +80,7 @@ const Signup = () => {
                             required={true}
                             type="email" className="form-control"
                             id="exampleInputEmail1" aria-describedby="emailHelp" />
-                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                        <div id="emailHelp" className="form-text">We&apos;ll never share your email with anyone else.</div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
@@ -99,7 +99,7 @@ const Signup = () => {
                                 type="password" 
                                 className={`form-control ${hasError('confirmPassword') ? 'is-invalid' : ''}`} id="confirmPassword" />
                             <div class="invalid-feedback">
-                                Passwords don't match.
+                                Passwords don&apos;t match.
                             </div>
                         </div>
                     </div>

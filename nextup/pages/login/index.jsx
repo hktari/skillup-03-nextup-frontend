@@ -63,7 +63,7 @@ const Login = () => {
                     <button type="submit" className="btn btn-primary w-100">Login</button>
                 </form>
                 <div className='d-flex justify-content-between pt-4'>
-                    <span className='color-dark'>Don't have an account yet ?</span>
+                    <span className='color-dark'>Don&apos;t have an account yet ?</span>
                     <Link href={'/login'}>
                         <a className='color-primary'>Sign up</a>
                     </Link>
