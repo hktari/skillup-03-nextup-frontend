@@ -7,6 +7,8 @@ WORKDIR /app
 # Add the source code to app
 COPY . /app
 
+ENV NEXT_PUBLIC_BACKEND_ENDPOINT http://ec2co-ecsel-5apbszxsa72h-1414158158.us-east-2.elb.amazonaws.com:3000
+
 RUN npm ci
 RUN npm run build
 RUN npm prune --production
