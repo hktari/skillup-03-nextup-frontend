@@ -109,18 +109,17 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
 
-  const event = await eventsApi.getDetails(context.params.eventId)
-  console.log('getStaticProps', context.params.eventId)
-  console.log(event)
-
-  if (!event) {
-    return {
-      notFound: true,
-    }
-  } else {
+  try {
+    console.log('getStaticProps', context.params.eventId)
+    const event = await eventsApi.getDetails(context.params.eventId)
     return {
       // Passed to the page component as props
       props: { event: JSON.parse(JSON.stringify(event)) }
+    }
+  } catch (error) {
+    console.error(error)
+    return {
+      notFound: true,
     }
   }
 }
